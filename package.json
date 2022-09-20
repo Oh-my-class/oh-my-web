@@ -19,9 +19,11 @@
     "@storybook/react": "^6.5.10",
     "daisyui": "^2.25.0",
     "framer-motion": "^7.2.1",
+    "inversify": "^6.0.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "reflect-metadata": "^0.1.13",
     "theme-change": "^2.2.0"
   },
   "devDependencies": {
