@@ -11,4 +11,5 @@ module.exports = {
   daisyui: {
     themes: ["cupcake", "halloween", "night", "winter"],
   },
+  safelist: ["alert-info", "alert-error", "alert-success", "alert-warning"],
 };
