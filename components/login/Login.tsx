@@ -1,5 +1,7 @@
 import Link from "next/link";
-import React, { FormEventHandler, useRef, useState } from "react";
+import React, { FormEventHandler, useRef } from "react";
+import { Alert, AlertType } from "../../ts/interfaces/Alert";
+import { useAlertStore } from "../../ts/store/AlertStore";
 
 export interface LoginProps {
   dummy: string;
@@ -7,7 +9,7 @@ export interface LoginProps {
 
 export const Login: React.FC<LoginProps> = ({ dummy }: LoginProps) => {
   const form = useRef<HTMLFormElement>(null);
-  const [alertMessage, setAlertMessage] = useState("");
+  const alertStore = useAlertStore();
 
   function validate() {
     return form.current?.reportValidity();
@@ -16,10 +18,18 @@ export const Login: React.FC<LoginProps> = ({ dummy }: LoginProps) => {
   const submit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (!validate()) {
-      setAlertMessage("Please fill out the fields correctly!");
+      alertStore.addAlert(
+        new Alert(
+          "I'm a teapot.",
+          "Please fill out the fields correctly!",
+          AlertType.error
+        )
+      );
       return;
     }
-    setAlertMessage("Schono sus was du da machsch");
+    alertStore.addAlert(
+      new Alert("Amogus", "Schono sus was du da machsch", AlertType.error)
+    );
     // TODO send login request
   };
 
@@ -60,13 +70,6 @@ export const Login: React.FC<LoginProps> = ({ dummy }: LoginProps) => {
             </button>
           </div>
         </form>
-      </div>
-      <div
-        className={`alert alert-error shadow-xl absolute top-2 left-2 right-2 ${
-          alertMessage === "" ? "hidden" : ""
-        }`}
-      >
-        <span>{alertMessage}</span>
       </div>
     </>
   );
