@@ -3,11 +3,7 @@ import React, { FormEventHandler, useRef } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
 
-export interface LoginProps {
-  dummy: string;
-}
-
-export const Login: React.FC<LoginProps> = ({ dummy }: LoginProps) => {
+export const Login: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
   const alertStore = useAlertStore();
 
@@ -62,8 +58,8 @@ export const Login: React.FC<LoginProps> = ({ dummy }: LoginProps) => {
           </div>
 
           <div className="card-actions justify-between items-center">
-            <Link href="/login/forgot">
-              <a className="link link-hover">Forgot password?</a>
+            <Link href="/login/forgot" className="link link-hover">
+              Forgot password?
             </Link>
             <button className="btn btn-primary" role="submit">
               Submit

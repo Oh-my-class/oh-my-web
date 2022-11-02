@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import React from "react";
 import { Login } from "../components/login/Login";
 
@@ -6,11 +7,13 @@ const Home: NextPage = () => {
   return (
     <div className=" w-screen h-screen absolute flex flex-row justify-center bg-base-100 font-sans">
       <div className=" w-9/12 text-center mt-20 md:mt-8">
-        <img
-          src="https://cdn.onlinewebfonts.com/svg/img_142809.png"
-          alt="School Icon"
+        <Image
+          src={"/img/icon.png"}
+          alt="School icon"
           className="md:w-1/4 md:h-1/8 mx-auto"
-        />
+          width={980}
+          height={690}
+        ></Image>
         <h1 className=" text-slate-800 font-bold text-5xl mt-12">
           Oh my Class
         </h1>
@@ -20,7 +23,7 @@ const Home: NextPage = () => {
         <button className="btn-primary btn-wide p-4 mt-7 rounded-2xl">
           <span className="text-lg font-bold">Go to page</span>
         </button>
-        <Login dummy={""}></Login>
+        <Login />
       </div>
     </div>
   );
