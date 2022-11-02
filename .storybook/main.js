@@ -4,6 +4,14 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     {
+      name: "storybook-addon-theme-changer",
+      options: {
+        themes: {
+          defaultValue: "night",
+        },
+      },
+    },
+    {
       name: "@storybook/addon-postcss",
       options: {
         postcssLoaderOptions: {
