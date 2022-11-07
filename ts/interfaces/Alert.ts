@@ -1,7 +1,5 @@
-import { randomUUID } from "crypto";
-
 export class Alert {
-  id: string;
+  id: number;
   title: string;
   message: string;
   type: AlertType;
@@ -13,7 +11,7 @@ export class Alert {
     type = AlertType.none,
     duration = 5
   ) {
-    this.id = "1";
+    this.id = -1;
     this.title = title;
     this.message = message;
     this.type = type;
