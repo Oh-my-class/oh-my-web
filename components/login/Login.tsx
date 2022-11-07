@@ -1,17 +1,19 @@
 import Link from "next/link";
-import React, { FormEventHandler, useRef } from "react";
+import React, { FormEventHandler, useRef, useState } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
 
 export const Login: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
   const alertStore = useAlertStore();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function validate() {
     return form.current?.reportValidity();
   }
 
-  const submit: FormEventHandler<HTMLFormElement> = (e) => {
+  const submit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!validate()) {
       alertStore.addAlert(
@@ -26,7 +28,34 @@ export const Login: React.FC = () => {
     alertStore.addAlert(
       new Alert("Amogus", "Schono sus was du da machsch", AlertType.error)
     );
-    // TODO send login request
+
+    const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        username,
+        password,
+      }),
+    });
+
+    if (response.status !== 200) {
+      alertStore.addAlert(
+        new Alert(
+          "Registration failed",
+          "Your registration could not be finished. Are you already registered or is your username already taken?",
+          AlertType.error
+        )
+      );
+      return;
+    }
+
+    alertStore.addAlert(
+      new Alert(
+        "Registration successful",
+        "Thanks for choosing Oh my Class!",
+        AlertType.success
+      )
+    );
   };
 
   return (
@@ -38,13 +67,12 @@ export const Login: React.FC = () => {
 
           <div className="form-control max-w-xs">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">Email or username</span>
             </label>
             <input
               required
-              type="email"
-              placeholder="john.doe@ohmyclass.ch"
               className="input input-primary w-full max-w-xs"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="form-control w-full max-w-xs">
@@ -55,6 +83,7 @@ export const Login: React.FC = () => {
               required
               type="password"
               className="input input-primary w-full max-w-xs"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
