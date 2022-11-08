@@ -1,29 +1,25 @@
 import type { NextPage } from "next";
-import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { Login } from "../components/login/Login";
 
 const Home: NextPage = () => {
   return (
     <div className=" w-screen h-screen absolute flex flex-row justify-center bg-base-100 font-sans">
       <div className=" w-9/12 text-center mt-20 md:mt-8">
-        <Image
-          src={"/img/icon.png"}
-          alt="School icon"
-          className="md:w-1/4 md:h-1/8 mx-auto"
-          width={980}
-          height={690}
-        ></Image>
-        <h1 className=" text-slate-800 font-bold text-5xl mt-12">
-          Oh my Class
-        </h1>
-        <p className=" text-slate-600 text-xl font-bold mt-7">
+        <h1 className=" text-white font-bold text-5xl mt-12">Oh my Class</h1>
+        <p className=" text-slate-400 text-xl font-bold mt-7">
           Make your school life better with Oh my Class!
         </p>
-        <button className="btn-primary btn-wide p-4 mt-7 rounded-2xl">
-          <span className="text-lg font-bold">Go to page</span>
-        </button>
-        <Login />
+        <div className="flex flex-col items-center gap-2 ">
+          <Link href={"/login"}>
+            <button className="btn-primary btn-wide p-4 mt-7 rounded-2xl">
+              <span className="text-lg font-bold">Login</span>
+            </button>
+          </Link>
+          <Link href={"/login/register"}>
+            <a className="link link-hover">Register</a>
+          </Link>
+        </div>
       </div>
     </div>
   );

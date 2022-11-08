@@ -3,7 +3,11 @@ import React, { FormEventHandler, useRef, useState } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
 
-export const Login: React.FC = () => {
+interface LoginProps {
+  className?: string;
+}
+
+export const Login: React.FC<LoginProps> = ({ className }) => {
   const form = useRef<HTMLFormElement>(null);
   const alertStore = useAlertStore();
   const [username, setUsername] = useState("");
@@ -63,40 +67,40 @@ export const Login: React.FC = () => {
 
   return (
     <>
-      <div className="card shadow-xl bg-base-200">
+      <div className={`card shadow-xl bg-base-200 ${className}`}>
         <form ref={form} onSubmit={submit} className="card-body">
           <h1 className="card-title">Welcome back!</h1>
           <h2>Please log in to continue.</h2>
 
-          <div className="form-control max-w-xs">
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Email or username</span>
             </label>
             <input
               required
-              className="input input-primary w-full max-w-xs"
+              className="input input-primary w-full"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
               required
               type="password"
-              className="input input-primary w-full max-w-xs"
+              className="input input-primary w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <div className="card-actions justify-between items-center">
+          <div className="card-actions justify-between items-center mt-5">
             <div className="flex flex-col items-start">
-              <Link href="/login/forgot" className="link link-hover">
-                Forgot password?
+              <Link href="/login/forgot">
+                <a className="link link-hover">Forgot password?</a>
               </Link>
-              <Link href="/login/register" className="link link-hover">
-                Not registered yet?
+              <Link href="/login/register">
+                <a className="link link-hover">Not registered yet?</a>
               </Link>
             </div>
             <button className="btn btn-primary" role="submit">

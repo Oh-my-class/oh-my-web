@@ -3,7 +3,11 @@ import React, { FormEventHandler, useRef, useState } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
 
-export const Register: React.FC = () => {
+interface RegistrationProps {
+  className?: string;
+}
+
+export const Register: React.FC<RegistrationProps> = ({ className }) => {
   const form = useRef<HTMLFormElement>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -57,27 +61,27 @@ export const Register: React.FC = () => {
 
   return (
     <>
-      <div className="card shadow-xl bg-base-200">
+      <div className={`card shadow-xl bg-base-200 ${className}`}>
         <form ref={form} onSubmit={submit} className="card-body">
           <h1 className="card-title">
             Let&apos;s make your school life easier!
           </h1>
           <h2>Start by creating a free account.</h2>
 
-          <div className="form-control max-w-xs">
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Username</span>
             </label>
             <input
               required
               placeholder="SuperKaren52"
-              className="input input-primary w-full max-w-xs"
+              className="input input-primary w-full"
               minLength={6}
               maxLength={32}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="form-control max-w-xs">
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
@@ -85,26 +89,26 @@ export const Register: React.FC = () => {
               required
               type="email"
               placeholder="john.doe@ohmyclass.ch"
-              className="input input-primary w-full max-w-xs"
+              className="input input-primary w-full"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
               required
               type="password"
-              className="input input-primary w-full max-w-xs"
+              className="input input-primary w-full"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <div className="card-actions justify-between items-center">
             <div className="flex flex-col items-start">
-              <Link href="/login" className="link link-hover">
-                Already have an account?
+              <Link href="/login">
+                <a className="link link-hover">Already have an account?</a>
               </Link>
             </div>
             <button className="btn btn-primary" role="submit">
