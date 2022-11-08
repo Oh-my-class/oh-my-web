@@ -25,9 +25,6 @@ export const Login: React.FC = () => {
       );
       return;
     }
-    alertStore.addAlert(
-      new Alert("Amogus", "Schono sus was du da machsch", AlertType.error)
-    );
 
     const response = await fetch("http://localhost:8080/api/v1/auth/login", {
       method: "POST",
@@ -39,22 +36,28 @@ export const Login: React.FC = () => {
     });
 
     if (response.status !== 200) {
-      alertStore.addAlert(
-        new Alert(
-          "Registration failed",
-          "Your registration could not be finished. Are you already registered or is your username already taken?",
-          AlertType.error
-        )
-      );
+      if (response.status === 401) {
+        alertStore.addAlert(
+          new Alert(
+            "You shall not pass",
+            "Your credentials are incorrect.",
+            AlertType.error
+          )
+        );
+      } else {
+        alertStore.addAlert(
+          new Alert(
+            "Login failed",
+            "Are your credentials correct?",
+            AlertType.error
+          )
+        );
+      }
       return;
     }
 
     alertStore.addAlert(
-      new Alert(
-        "Registration successful",
-        "Thanks for choosing Oh my Class!",
-        AlertType.success
-      )
+      new Alert("Login successful", "Welcome back!", AlertType.success)
     );
   };
 
