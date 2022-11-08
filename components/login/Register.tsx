@@ -108,10 +108,10 @@ export const Register: React.FC<RegistrationProps> = ({ className }) => {
             />
           </div>
 
-          <div className="card-actions justify-between items-center">
+          <div className="card-actions justify-between items-center mt-5">
             <div className="flex flex-col items-start">
-              <Link href="/login">
-                <a className="link link-hover">Already have an account?</a>
+              <Link href="/login" className="link link-hover">
+                Already have an account?
               </Link>
             </div>
             <button className="btn btn-primary" role="submit">

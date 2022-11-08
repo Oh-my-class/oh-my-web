@@ -99,11 +99,11 @@ export const Login: React.FC<LoginProps> = ({ className }) => {
 
           <div className="card-actions justify-between items-center mt-5">
             <div className="flex flex-col items-start">
-              <Link href="/login/forgot">
-                <a className="link link-hover">Forgot password?</a>
+              <Link href="/login/forgot" className="link link-hover">
+                Forgot password?
               </Link>
-              <Link href="/login/register">
-                <a className="link link-hover">Not registered yet?</a>
+              <Link href="/login/register" className="link link-hover">
+                Not registered yet?
               </Link>
             </div>
             <button className="btn btn-primary" role="submit">

@@ -11,13 +11,13 @@ const Home: NextPage = () => {
           Make your school life better with Oh my Class!
         </p>
         <div className="flex flex-col items-center gap-2 ">
-          <Link href={"/login"}>
+          <Link href={"/login"} legacyBehavior>
             <button className="btn-primary btn-wide p-4 mt-7 rounded-2xl">
               <span className="text-lg font-bold">Login</span>
             </button>
           </Link>
-          <Link href={"/login/register"}>
-            <a className="link link-hover">Register</a>
+          <Link href={"/login/register"} className="link link-hover">
+            Register
           </Link>
         </div>
       </div>
