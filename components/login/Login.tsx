@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { FormEventHandler, useRef, useState } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
@@ -10,6 +11,7 @@ interface LoginProps {
 export const Login: React.FC<LoginProps> = ({ className }) => {
   const form = useRef<HTMLFormElement>(null);
   const alertStore = useAlertStore();
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -63,6 +65,7 @@ export const Login: React.FC<LoginProps> = ({ className }) => {
     alertStore.addAlert(
       new Alert("Login successful", "Welcome back!", AlertType.success)
     );
+    router.push("/app");
   };
 
   return (

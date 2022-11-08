@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { FormEventHandler, useRef, useState } from "react";
 import { Alert, AlertType } from "../../ts/interfaces/Alert";
 import { useAlertStore } from "../../ts/store/AlertStore";
@@ -14,6 +15,7 @@ export const Register: React.FC<RegistrationProps> = ({ className }) => {
   const [password, setPassword] = useState("");
 
   const alertStore = useAlertStore();
+  const router = useRouter();
 
   function validate() {
     return form.current?.reportValidity();
@@ -57,6 +59,7 @@ export const Register: React.FC<RegistrationProps> = ({ className }) => {
         AlertType.success
       )
     );
+    router.push("/app");
   };
 
   return (
